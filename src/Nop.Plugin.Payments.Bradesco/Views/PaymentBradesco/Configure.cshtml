@@ -1,0 +1,144 @@
+﻿@{
+    Layout = "";
+}
+@model ConfigurationModel
+@using Nop.Plugin.Payments.Bradesco.Models;
+@using Nop.Web.Framework;
+@Html.Action("StoreScopeConfiguration", "Setting", new { area = "Admin" })
+<fieldset>
+<legend>Instruções de configuração</legend>
+
+    1. Peça para criar uma loja para integração e-commerce com o Bradesco com o seu gerente de conta Bradesdco<br />
+    2. Digite no campo Número Loja abaixo, o número que recebido na documentação de cadastrado no Bradesco<br />
+
+    <p>No site do Bradesco faça as seguintes de acordo com o manual de integração:</p>
+    
+    <p>Você está pronto para começar a gerar o boleto via Bradesco!</p>
+</fieldset>
+<br />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <table class="adminContent" style="width: 800px">
+        <tr>
+            <td class="adminTitle">
+                Nome do Sacado no Boleto:
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.NomeSacado)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                Número da Loja no Bradesco:
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.NumeroLoja)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                Código do Banco Bradesco (237)
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.Banco)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                Número da Agência Bradesco
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.NumeroAgencia)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                Número da Conta Bradesco
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.NumeroConta)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                Assinatura para boleto (recebido com a documentação de integração)
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.AssinaturaBoleto)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                Nome do servidor do bradesco (teste mupteste.comercioeletronico.com.br)
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.NomeServidorBradesco)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                Número de dias para adicionar na data de vencimento do boleto
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.NumeroDiasAdicionaisVencimentoBoleto)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                Unidade Padrão para os itens do compra (ex: UN para Unidade, PC para peça)
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.UnidadePadrao)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                Carteira - Padrão 25 - Verificar com o gerente da conta.
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.Carteira)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                Flag para indicar se utiliza produto único *(Caso falso não se pode utilizar desconto na loja)
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.UtilizaProdutoUnico)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                Nome do produto unico *(Caso a flag seja que utiliza produto único estiver ativa)
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.NomeProdutoUnico)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                Modo debug - Salva as informações no log para consulta.
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.ModoDebug)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                Utiliza a https nas urls do bradesco.
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.UtilizaHTTPS)
+            </td>
+        </tr>
+    </table>
+    <p>
+        ** Em caso de dúvidas, problemas ou sugestões, entre em contato com: <a href="mailto:pedrousinskas@smartenup.com.br"> pedrousinskas@smartenup.com.br</a>
+    </p>
+    <br />
+    <p>
+        <button type="submit" name="save" value="save" class="t-button">
+            @T("Admin.Common.Save")</button>
+    </p>
+}
