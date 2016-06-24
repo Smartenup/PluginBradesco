@@ -5,6 +5,12 @@ namespace Nop.Plugin.Payments.Bradesco.Models
 {
     public class ConfigurationModel : BaseNopModel
     {
+        [NopResourceDisplayName("Plugins.Payments.Bradesco.Fields.Manager")]
+        public string Manager { get; set; }
+
+        [NopResourceDisplayName("Plugins.Payments.Bradesco.Fields.SenhaManager")]
+        public string SenhaManager { get; set; }
+
         [NopResourceDisplayName("Plugins.Payments.Bradesco.Fields.NomeSacado")]
         public string NomeSacado { get; set; }
 

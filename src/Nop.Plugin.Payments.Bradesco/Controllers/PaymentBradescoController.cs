@@ -83,6 +83,8 @@ namespace Nop.Plugin.Payments.Bradesco.Controllers
             model.UnidadePadrao                         = bradescoPaymentSettings.UnidadePadrao;
             model.UtilizaHTTPS                          = bradescoPaymentSettings.UtilizaHTTPS;
             model.Carteira                              = bradescoPaymentSettings.Carteira;
+            model.Manager                               = bradescoPaymentSettings.Manager;
+            model.SenhaManager                          = bradescoPaymentSettings.SenhaManager;
 
             return View("~/Plugins/Payments.Bradesco/Views/PaymentBradesco/Configure.cshtml", model);
         }
@@ -116,7 +118,9 @@ namespace Nop.Plugin.Payments.Bradesco.Controllers
             bradescoPaymentSettings.ModoDebug                               = model.ModoDebug;
             bradescoPaymentSettings.UnidadePadrao                           = model.UnidadePadrao; 
             bradescoPaymentSettings.UtilizaHTTPS                            = model.UtilizaHTTPS; 
-            bradescoPaymentSettings.Carteira                                = model.Carteira; 
+            bradescoPaymentSettings.Carteira                                = model.Carteira;
+            bradescoPaymentSettings.Manager                                 = model.Manager;
+            bradescoPaymentSettings.SenhaManager                            = model.SenhaManager;
 
 
             _settingService.SaveSetting(bradescoPaymentSettings);

@@ -3,6 +3,7 @@ using Nop.Core.Domain;
 using Nop.Core.Domain.Directory;
 using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Payments;
+using Nop.Core.Domain.Tasks;
 using Nop.Core.Plugins;
 using Nop.Plugin.Payments.Bradesco.Controllers;
 using Nop.Services.Catalog;
@@ -11,6 +12,7 @@ using Nop.Services.Configuration;
 using Nop.Services.Customers;
 using Nop.Services.Directory;
 using Nop.Services.Payments;
+using Nop.Services.Tasks;
 using Nop.Services.Tax;
 using System;
 using System.Collections.Generic;
@@ -33,6 +35,7 @@ namespace Nop.Plugin.Payments.Bradesco
         private readonly StoreInformationSettings _storeInformationSettings;
         private readonly IAddressAttributeParser _addressAttributeParser;
         private readonly IWorkContext _workContext;
+        private readonly IScheduleTaskService _scheduleTaskService;
         #endregion
 
         public BradescoPaymentProcessor(
@@ -46,20 +49,22 @@ namespace Nop.Plugin.Payments.Bradesco
             IWebHelper webHelper,
             StoreInformationSettings storeInformationSettings,
             IAddressAttributeParser addressAttributeParser,
-            IWorkContext workContext
+            IWorkContext workContext,
+            IScheduleTaskService scheduleTaskService
             )
         {
-            this._bradescoPaymentSettings  = bradescoPaymentSettings;
-            this._settingService           = settingService;
-            this._taxService               = taxService;
-            this._priceCalculationService  = priceCalculationService;
-            this._currencyService          = currencyService;
-            this._customerService          = customerService;
-            this._currencySettings         = currencySettings;
-            this._webHelper                = webHelper;
-            this._storeInformationSettings = storeInformationSettings;
-            this._addressAttributeParser   = addressAttributeParser;
-            this._workContext              = workContext;
+            _bradescoPaymentSettings  = bradescoPaymentSettings;
+            _settingService           = settingService;
+            _taxService               = taxService;
+            _priceCalculationService  = priceCalculationService;
+            _currencyService          = currencyService;
+            _customerService          = customerService;
+            _currencySettings         = currencySettings;
+            _webHelper                = webHelper;
+            _storeInformationSettings = storeInformationSettings;
+            _addressAttributeParser   = addressAttributeParser;
+            _workContext              = workContext;
+            _scheduleTaskService      = scheduleTaskService;
         }
 
         public ProcessPaymentResult ProcessPayment(ProcessPaymentRequest processPaymentRequest)
@@ -200,6 +205,39 @@ namespace Nop.Plugin.Payments.Bradesco
         public bool SkipPaymentInfo
         {
             get { return false; }
+        }
+
+
+        public override void Install()
+        {
+            base.Install();
+
+            ScheduleTask taskByType = _scheduleTaskService.GetTaskByType("Nop.Plugin.Payments.Bradesco.BradescoPaymentUpdateTask, Nop.Plugin.Payments.Bradesco");
+
+            if (taskByType == null)
+            {
+                taskByType = new ScheduleTask() {
+                    Enabled = false,
+                    Name = "BradescoPaymentUpdateTask",
+                    Seconds = 600,
+                    StopOnError = false,
+                    Type = "Nop.Plugin.Payments.Bradesco.BradescoPaymentUpdateTask, Nop.Plugin.Payments.Bradesco"
+                };
+
+                _scheduleTaskService.InsertTask(taskByType);
+            }
+        }
+
+        public override void Uninstall()
+        {
+            base.Uninstall();
+
+            ScheduleTask taskByType = _scheduleTaskService.GetTaskByType("Nop.Plugin.Payments.Bradesco.BradescoPaymentUpdateTask, Nop.Plugin.Payments.Bradesco");
+
+            if (taskByType != null)
+            {
+                _scheduleTaskService.DeleteTask(taskByType);
+            }
         }
     }
 }

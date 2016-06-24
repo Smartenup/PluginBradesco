@@ -22,5 +22,17 @@ namespace Nop.Plugin.Payments.Bradesco
         public bool UtilizaHTTPS { get; set; }
 
         public string Carteira { get; set; }
+
+        /// <summary>
+        /// Usuário utilizado para logar no site administrativo do bradesco
+        /// https://mup.comercioeletronico.com.br/sepsManager/login.asp?merchantid=100004933&url=%2FsepsManager%2Fcompras%2Easp%3FMerchantid%3D100004933
+        /// </summary>
+        public string Manager { get; set; }
+
+        /// <summary>
+        /// Senha utilizada para logar no site administrativo do bradesco
+        /// https://mup.comercioeletronico.com.br/sepsManager/login.asp?merchantid=100004933&url=%2FsepsManager%2Fcompras%2Easp%3FMerchantid%3D100004933
+        /// </summary>
+        public string SenhaManager { get; set; }
     }
 }

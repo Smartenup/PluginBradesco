@@ -5,21 +5,37 @@
 @using Nop.Plugin.Payments.Bradesco.Models;
 @using Nop.Web.Framework;
 @Html.Action("StoreScopeConfiguration", "Setting", new { area = "Admin" })
-<fieldset>
-<legend>Instruções de configuração</legend>
-
-    1. Peça para criar uma loja para integração e-commerce com o Bradesco com o seu gerente de conta Bradesdco<br />
-    2. Digite no campo Número Loja abaixo, o número que recebido na documentação de cadastrado no Bradesco<br />
-
-    <p>No site do Bradesco faça as seguintes de acordo com o manual de integração:</p>
-    
-    <p>Você está pronto para começar a gerar o boleto via Bradesco!</p>
-</fieldset>
-<br />
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>Instruções de configuração</legend>
+
+        1. Peça para criar uma loja para integração e-commerce com o Bradesco com o seu gerente de conta Bradesdco<br />
+        2. Digite no campo Número Loja abaixo, o número que recebido na documentação de cadastrado no Bradesco<br />
+
+        <p>No site do Bradesco faça as seguintes de acordo com o manual de integração:</p>
+
+        <p>Você está pronto para começar a gerar o boleto via Bradesco!</p>
+    </fieldset>
+    <br />
     <table class="adminContent" style="width: 800px">
+        <tr>
+            <td class="adminTitle">
+                Usuário site administrativo de boletos bradesco:
+            </td>
+            <td class="adminData">
+                @Html.EditorFor(model => model.Manager)
+            </td>
+        </tr>
+        <tr>
+            <td class="adminTitle">
+                Senha site administrativo de boletos bradesco:
+            </td>
+            <td class="adminData">
+                @Html.PasswordFor(model => model.SenhaManager)
+            </td>
+        </tr>
         <tr>
             <td class="adminTitle">
                 Nome do Sacado no Boleto:
