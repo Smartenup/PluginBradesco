@@ -107,6 +107,7 @@ namespace Nop.Plugin.Payments.Bradesco
                                 {
                                     _orderProcessingService.MarkOrderAsPaid(order);
                                     AddOrderNote("Pagamento aprovado.", true, order);
+                                    AddOrderNote("Aguardando Impressão - Excluir esse comentário ao imprimir ", false, order);
                                 }
                                 ///22.........................Boleto Pago Menor (Boleto Bancário com retorno para a loja) 
                                 if (att.Value.Equals("22"))
@@ -118,6 +119,7 @@ namespace Nop.Plugin.Payments.Bradesco
                                 {
                                     _orderProcessingService.MarkOrderAsPaid(order);
                                     AddOrderNote("Boleto Pago Maior - Por favor entrar em contato para verificar a diferença", true, order);
+                                    AddOrderNote("Aguardando Impressão - Excluir esse comentário ao imprimir ", false, order);
                                 }
                             }
                         }
