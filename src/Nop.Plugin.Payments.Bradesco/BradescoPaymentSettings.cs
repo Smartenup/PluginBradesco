@@ -34,5 +34,7 @@ namespace Nop.Plugin.Payments.Bradesco
         /// https://mup.comercioeletronico.com.br/sepsManager/login.asp?merchantid=100004933&url=%2FsepsManager%2Fcompras%2Easp%3FMerchantid%3D100004933
         /// </summary>
         public string SenhaManager { get; set; }
+
+        public bool AdicionarNotaPrazoFabricaoEnvio { get; set; }
     }
 }

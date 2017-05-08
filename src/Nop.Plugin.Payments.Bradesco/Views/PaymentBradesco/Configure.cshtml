@@ -8,153 +8,177 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <fieldset>
-        <legend>Instruções de configuração</legend>
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-body">
 
-        1. Peça para criar uma loja para integração e-commerce com o Bradesco com o seu gerente de conta Bradesdco<br />
-        2. Digite no campo Número Loja abaixo, o número que recebido na documentação de cadastrado no Bradesco<br />
+                <fieldset>
+                    <legend>Instruções de configuração</legend>
 
-        <p>No site do Bradesco faça as seguintes de acordo com o manual de integração:</p>
+                    1. Peça para criar uma loja para integração e-commerce com o Bradesco com o seu gerente de conta Bradesdco<br />
+                    2. Digite no campo Número Loja abaixo, o número que recebido na documentação de cadastrado no Bradesco<br />
 
-        <p>Você está pronto para começar a gerar o boleto via Bradesco!</p>
-    </fieldset>
-    <br />
-    <table class="adminContent" style="width: 800px">
-        <tr>
-            <td class="adminTitle">
-                Usuário site administrativo de boletos bradesco:
-            </td>
-            <td class="adminData">
-                @Html.EditorFor(model => model.Manager)
-            </td>
-        </tr>
-        <tr>
-            <td class="adminTitle">
-                Senha site administrativo de boletos bradesco:
-            </td>
-            <td class="adminData">
-                @Html.PasswordFor(model => model.SenhaManager)
-            </td>
-        </tr>
-        <tr>
-            <td class="adminTitle">
-                Nome do Sacado no Boleto:
-            </td>
-            <td class="adminData">
-                @Html.EditorFor(model => model.NomeSacado)
-            </td>
-        </tr>
-        <tr>
-            <td class="adminTitle">
-                Número da Loja no Bradesco:
-            </td>
-            <td class="adminData">
-                @Html.EditorFor(model => model.NumeroLoja)
-            </td>
-        </tr>
-        <tr>
-            <td class="adminTitle">
-                Código do Banco Bradesco (237)
-            </td>
-            <td class="adminData">
-                @Html.EditorFor(model => model.Banco)
-            </td>
-        </tr>
-        <tr>
-            <td class="adminTitle">
-                Número da Agência Bradesco
-            </td>
-            <td class="adminData">
-                @Html.EditorFor(model => model.NumeroAgencia)
-            </td>
-        </tr>
-        <tr>
-            <td class="adminTitle">
-                Número da Conta Bradesco
-            </td>
-            <td class="adminData">
-                @Html.EditorFor(model => model.NumeroConta)
-            </td>
-        </tr>
-        <tr>
-            <td class="adminTitle">
-                Assinatura para boleto (recebido com a documentação de integração)
-            </td>
-            <td class="adminData">
-                @Html.EditorFor(model => model.AssinaturaBoleto)
-            </td>
-        </tr>
-        <tr>
-            <td class="adminTitle">
-                Nome do servidor do bradesco (teste mupteste.comercioeletronico.com.br)
-            </td>
-            <td class="adminData">
-                @Html.EditorFor(model => model.NomeServidorBradesco)
-            </td>
-        </tr>
-        <tr>
-            <td class="adminTitle">
-                Número de dias para adicionar na data de vencimento do boleto
-            </td>
-            <td class="adminData">
-                @Html.EditorFor(model => model.NumeroDiasAdicionaisVencimentoBoleto)
-            </td>
-        </tr>
-        <tr>
-            <td class="adminTitle">
-                Unidade Padrão para os itens do compra (ex: UN para Unidade, PC para peça)
-            </td>
-            <td class="adminData">
-                @Html.EditorFor(model => model.UnidadePadrao)
-            </td>
-        </tr>
-        <tr>
-            <td class="adminTitle">
-                Carteira - Padrão 25 - Verificar com o gerente da conta.
-            </td>
-            <td class="adminData">
-                @Html.EditorFor(model => model.Carteira)
-            </td>
-        </tr>
-        <tr>
-            <td class="adminTitle">
-                Flag para indicar se utiliza produto único *(Caso falso não se pode utilizar desconto na loja)
-            </td>
-            <td class="adminData">
-                @Html.EditorFor(model => model.UtilizaProdutoUnico)
-            </td>
-        </tr>
-        <tr>
-            <td class="adminTitle">
-                Nome do produto unico *(Caso a flag seja que utiliza produto único estiver ativa)
-            </td>
-            <td class="adminData">
-                @Html.EditorFor(model => model.NomeProdutoUnico)
-            </td>
-        </tr>
-        <tr>
-            <td class="adminTitle">
-                Modo debug - Salva as informações no log para consulta.
-            </td>
-            <td class="adminData">
-                @Html.EditorFor(model => model.ModoDebug)
-            </td>
-        </tr>
-        <tr>
-            <td class="adminTitle">
-                Utiliza a https nas urls do bradesco.
-            </td>
-            <td class="adminData">
-                @Html.EditorFor(model => model.UtilizaHTTPS)
-            </td>
-        </tr>
-    </table>
-    <p>
-        ** Em caso de dúvidas, problemas ou sugestões, entre em contato com: <a href="mailto:pedrousinskas@smartenup.com.br"> pedrousinskas@smartenup.com.br</a>
-    </p>
-    <br />
-    <p>
-        <button type="submit" name="save" value="save" class="t-button">
-            @T("Admin.Common.Save")</button>
-    </p>
+                    <p>No site do Bradesco faça as seguintes de acordo com o manual de integração:</p>
+
+                    <p>Você está pronto para começar a gerar o boleto via Bradesco!</p>
+                </fieldset>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Manager)
+                    </div>
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Manager)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.SenhaManager)
+                    </div>
+                    <div class="col-md-9">
+                        @Html.PasswordFor(model => model.SenhaManager)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.NomeSacado)
+                    </div>
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.NomeSacado)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.NumeroLoja)
+                    </div>
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.NumeroLoja)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Banco)
+                    </div>
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Banco)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.NumeroAgencia)
+                    </div>
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.NumeroAgencia)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+
+                    </div>
+                    <div class="col-md-9">
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.NumeroConta)
+                    </div>
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.NumeroConta)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.AssinaturaBoleto)
+                    </div>
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.AssinaturaBoleto)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.NomeServidorBradesco)
+                    </div>
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.NomeServidorBradesco)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.NumeroDiasAdicionaisVencimentoBoleto)
+                    </div>
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.NumeroDiasAdicionaisVencimentoBoleto)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.UnidadePadrao)
+                    </div>
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.UnidadePadrao)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.Carteira)
+                    </div>
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Carteira)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.UtilizaProdutoUnico)
+                    </div>
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.UtilizaProdutoUnico)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.NomeProdutoUnico)
+                    </div>
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.NomeProdutoUnico)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.ModoDebug)
+                    </div>
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.ModoDebug)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.UtilizaHTTPS)
+                    </div>
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.UtilizaHTTPS)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.AdicionarNotaPrazoFabricaoEnvio)
+                    </div>
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.AdicionarNotaPrazoFabricaoEnvio)
+                    </div>
+                </div>
+                <p>
+                    ** Em caso de dúvidas, problemas ou sugestões, entre em contato com: <a href="mailto:pedrousinskas@smartenup.com.br"> pedrousinskas@smartenup.com.br</a>
+                </p>
+                <br />
+                <div class="form-group">
+                    <div class="col-md-3">
+                        &nbsp;
+                    </div>
+                    <div class="col-md-9">
+                        <input type="submit" name="save" class="btn bg-blue" value="@T("Admin.Common.Save")" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 }

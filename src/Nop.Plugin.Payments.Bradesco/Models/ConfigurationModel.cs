@@ -53,5 +53,8 @@ namespace Nop.Plugin.Payments.Bradesco.Models
         [NopResourceDisplayName("Plugins.Payments.Bradesco.Fields.Carteira")]
         public string Carteira { get; set; }
 
+        [NopResourceDisplayName("Plugins.Payments.Bradesco.Fields.AdicionarNotaPrazoFabricaoEnvio")]
+        public bool AdicionarNotaPrazoFabricaoEnvio { get; set; }
+
     }
 }

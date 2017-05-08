@@ -85,6 +85,7 @@ namespace Nop.Plugin.Payments.Bradesco.Controllers
             model.Carteira                              = bradescoPaymentSettings.Carteira;
             model.Manager                               = bradescoPaymentSettings.Manager;
             model.SenhaManager                          = bradescoPaymentSettings.SenhaManager;
+            model.AdicionarNotaPrazoFabricaoEnvio       = bradescoPaymentSettings.AdicionarNotaPrazoFabricaoEnvio;
 
             return View("~/Plugins/Payments.Bradesco/Views/PaymentBradesco/Configure.cshtml", model);
         }
@@ -121,6 +122,7 @@ namespace Nop.Plugin.Payments.Bradesco.Controllers
             bradescoPaymentSettings.Carteira                                = model.Carteira;
             bradescoPaymentSettings.Manager                                 = model.Manager;
             bradescoPaymentSettings.SenhaManager                            = model.SenhaManager;
+            bradescoPaymentSettings.AdicionarNotaPrazoFabricaoEnvio         = model.AdicionarNotaPrazoFabricaoEnvio;
 
 
             _settingService.SaveSetting(bradescoPaymentSettings);
