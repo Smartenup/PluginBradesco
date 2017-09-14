@@ -164,8 +164,9 @@ namespace Nop.Plugin.Payments.Bradesco
                     }
                     finally
                     {
-                        dataStream.Flush();
+                        dataStream.Close();
                         response.Close();
+                        
                     }
                 }
             }
